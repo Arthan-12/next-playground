@@ -1,11 +1,8 @@
-import ProtectedRoute from '@/guard/ProtectedRoute';
-
+'use client';
 export default function Home() {
   return (
-    <ProtectedRoute>
-      <div className="flex">
-        <div className="w-full"></div>
-      </div>
-    </ProtectedRoute>
+    <div className="flex">
+      <div className="w-full"></div>
+    </div>
   );
 }

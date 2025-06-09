@@ -2,8 +2,12 @@
 import Header from '@/components/header/header';
 import Sidebar from '@/components/sidebar/sidebar';
 import { AuthProvider } from '@/contexts/AuthContext';
+import { SessionProvider } from '@/contexts/SessionContext';
+import ProtectedRoute from '@/guard/ProtectedRoute';
+import { userService } from '@/services/user/user-services';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
 import './globals.css';
 
 const geistSans = Geist({
@@ -24,19 +28,26 @@ export default function RootLayout({
   const pathname = usePathname();
   const showSidebar = pathname !== '/login' && pathname !== '/create-account';
   const showHeader = pathname !== '/login';
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthProvider>
-          <div className="w-full flex flex-col">
-            {showHeader && <Header />}
-            <div className="flex">
-              {showSidebar && <Sidebar />}
-              {children}
+          <SessionProvider>
+            <div className="w-full flex flex-col">
+              {showHeader && <Header />}
+              <div className="flex">
+                {showSidebar && (
+                  <ProtectedRoute>
+                    <Sidebar />
+                  </ProtectedRoute>
+                )}
+                {children}
+              </div>
             </div>
-          </div>
+          </SessionProvider>
         </AuthProvider>
       </body>
     </html>
