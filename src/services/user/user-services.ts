@@ -1,3 +1,4 @@
+import { buildAuthHeader } from '@/auth/auth';
 import axios from 'axios';
 
 interface UserDTO {
@@ -23,5 +24,16 @@ export const userService = {
   async getUser(userId: string): Promise<UserResponse> {
     const response = await axios.get(`/api/users/${userId}`);
     return response.data;
+  },
+
+  async searchUsers(searchTerm: string): Promise<UserResponse[]> {
+    if (!searchTerm || searchTerm.trim() === '') {
+      return []; // or throw an error or handle it gracefully
+    }
+    const url = `${API_ENDPOINT}/api/users/search?q=${encodeURIComponent(
+      searchTerm
+    )}`;
+    const response = await axios.get(url, { headers: buildAuthHeader() });
+    return response.data.users;
   },
 };

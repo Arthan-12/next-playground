@@ -19,14 +19,12 @@ export default function Select() {
   };
 
   return (
-    <ProtectedRoute>
-      <main className="p-8">
-        <h1 className="text-2xl font-bold mb-4">MultiSelect Example</h1>
-        <MultiSelect options={options} onChange={handleSelectionChange} />
-        <div className="mt-6">
-          <strong>Selected:</strong> {selectedOptions.join(', ') || 'None'}
-        </div>
-      </main>
-    </ProtectedRoute>
+    <main className="p-8">
+      <h1 className="text-2xl font-bold mb-4">MultiSelect Example</h1>
+      <MultiSelect options={options} onChange={handleSelectionChange} />
+      <div className="mt-6">
+        <strong>Selected:</strong> {selectedOptions.join(', ') || 'None'}
+      </div>
+    </main>
   );
 }

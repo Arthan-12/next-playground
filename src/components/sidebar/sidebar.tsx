@@ -19,6 +19,11 @@ export default function Sidebar() {
             <span className="hover:bg-gray-700 p-2 rounded">Select</span>
           </Link>
         </li>
+        <li className="py-2">
+          <Link href="/search-user">
+            <span className="hover:bg-gray-700 p-2 rounded">Searh User</span>
+          </Link>
+        </li>
       </ul>
     </div>
   );

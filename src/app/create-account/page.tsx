@@ -34,7 +34,6 @@ export default function CreateAccount() {
       passwordConfirmation: yup
         .string()
         .required(requiredMessage)
-        .min(minChar, `field must be at least ${minChar} characters`)
         .oneOf([yup.ref('password')], passwordMessage),
     })
     .required();

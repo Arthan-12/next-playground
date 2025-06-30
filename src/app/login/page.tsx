@@ -75,15 +75,17 @@ export default function LoginPage() {
       >
         <div className="flex flex-col gap-3">
           <h2 className="text-2xl font-bold text-center">Login</h2>
-          <input
-            type="text"
-            placeholder="E-mail"
-            className="w-full px-4 py-2 border rounded mb-4"
-            {...register('email')}
-          />
-          {errors.email && (
-            <p className="text-red-500 text-sm">{errors.email.message}</p>
-          )}
+          <div>
+            <input
+              type="text"
+              placeholder="E-mail"
+              className="w-full px-4 py-2 border rounded"
+              {...register('email')}
+            />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email.message}</p>
+            )}
+          </div>
         </div>
         <div className="flex flex-col">
           <input
