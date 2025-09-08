@@ -41,6 +41,16 @@ describe('LoginPage', () => {
     expect(screen.getByPlaceholderText(/password/i)).toBeInTheDocument();
   });
 
+  it('shows validation errors when fields are empty and form is submitted', async () => {
+    render(<LoginPage />);
+    const button = screen.getByRole('button', { name: /log in/i });
+    fireEvent.click(button);
+
+    await waitFor(() => {
+      expect(screen.getByText(/field is required/i)).toBeInTheDocument();
+    });
+  });
+
   it('calls login service on valid form submission', async () => {
     (loginService.login as jest.Mock).mockResolvedValueOnce({
       data: {

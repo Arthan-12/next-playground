@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../../contexts/AuthContext';
 import * as yup from 'yup';
-import { LoginDTO, loginService } from '@/services/user/login-service';
+import { loginService } from '@/services/user/login-service';
 
 type UserInputs = {
   email: string;
